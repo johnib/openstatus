@@ -25,10 +25,9 @@ function parseDowntimeToSeconds(downtime: string): number {
 
   const regex = /(\d+)\s*(d|h|m|s)/g;
   let totalSeconds = 0;
-  let match: RegExpExecArray | null = null;
+  let match: RegExpExecArray | null = regex.exec(downtime);
 
-  // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
-  while ((match = regex.exec(downtime)) !== null) {
+  while (match !== null) {
     const value = Number.parseInt(match[1], 10);
     const unit = match[2];
 
@@ -49,6 +48,7 @@ function parseDowntimeToSeconds(downtime: string): number {
         totalSeconds += value; // seconds
         break;
     }
+    match = regex.exec(downtime);
   }
 
   return totalSeconds;

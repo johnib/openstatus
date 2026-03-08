@@ -9,8 +9,8 @@ import {
 } from "@openstatus/db/src/schema";
 import { StatusReportSchema } from "./schema";
 
-// biome-ignore lint/suspicious/noExplicitAny: test utility
-const spies = (globalThis as any).__subscriptionSpies as {
+const spies = (globalThis as unknown as Record<string, unknown>)
+  .__subscriptionSpies as {
   dispatchStatusReportUpdate: {
     mockClear: () => void;
     mock: { calls: number[][] };

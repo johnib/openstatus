@@ -12,8 +12,7 @@ export function parseCacheControlHeader(header: string): CacheControlInfo[] {
 
   const cacheControlInfo: CacheControlInfo[] = [];
 
-  // biome-ignore lint/complexity/noForEach: <explanation>
-  cacheControlDirectives.forEach((directive) => {
+  for (const directive of cacheControlDirectives) {
     const parts = directive.split("=");
 
     const name = parts[0].trim();
@@ -23,7 +22,7 @@ export function parseCacheControlHeader(header: string): CacheControlInfo[] {
     const description = getDirectiveDescription(name);
 
     cacheControlInfo.push({ description, name, value, directive });
-  });
+  }
 
   return cacheControlInfo;
 }

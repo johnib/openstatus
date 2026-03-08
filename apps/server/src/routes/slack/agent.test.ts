@@ -12,8 +12,7 @@ describe("buildSystemPrompt", () => {
     );
     expect(match).not.toBeNull();
 
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    const promptDate = new Date(match![1]);
+    const promptDate = new Date(match?.[1] ?? "");
     expect(promptDate.getTime()).toBeGreaterThanOrEqual(before.getTime());
     expect(promptDate.getTime()).toBeLessThanOrEqual(after.getTime());
   });

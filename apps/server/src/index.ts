@@ -80,7 +80,7 @@ await configure({
   contextLocalStorage: new AsyncLocalStorage(),
 });
 
-/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */
+// biome-ignore lint/suspicious/noExplicitAny: event objects have dynamic shapes from middleware context
 function shouldSample(event: Record<string, any>): boolean {
   // Always keep errors
   if (event.status_code >= 500) return true;

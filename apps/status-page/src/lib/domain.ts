@@ -1,10 +1,10 @@
 import type { NextRequest } from "next/server";
 
-export const getValidSubdomain = (host?: string | null) => {
+export const getValidSubdomain = (_host?: string | null) => {
+  let host = _host;
   let subdomain: string | null = null;
   if (!host && typeof window !== "undefined") {
     // On client side, get the host from window
-    // biome-ignore lint: to fix later
     host = window.location.host;
   }
 
